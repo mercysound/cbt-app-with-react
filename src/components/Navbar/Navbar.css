@@ -1,0 +1,7 @@
+.navbar-container ul{
+    display: flex;
+    gap: 20px;
+}
+/* .navbar-container ul li{
+    text-decoration: none;
+} */
