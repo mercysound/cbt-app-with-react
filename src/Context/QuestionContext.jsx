@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 const questionContext = createContext()
 
 const QuestionContexProvider = ({children})=>{
-    const [questionWithAnswer, setQuestionWithAnswer] = useState([]);
+    const [questionWithAnswers, setQuestionWithAnswer] = useState([]);
     const addQuestion = question =>{
         setQuestionWithAnswer(prev=>[...prev, question]);
         console.log(question);
@@ -13,7 +13,7 @@ const QuestionContexProvider = ({children})=>{
     //     targetRef.current.scrollIntoView({behaviour:"smooth"})
     // }
     return(
-        <questionContext.Provider value={{questionWithAnswer, addQuestion}}>
+        <questionContext.Provider value={{questionWithAnswers, addQuestion}}>
             {children}
         </questionContext.Provider>
     )
