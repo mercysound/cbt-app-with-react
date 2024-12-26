@@ -35,7 +35,7 @@ const SetQuestions = () => {
         <input value={optionC} onInput={e=>setOptionC(e.target.value)} type="text" placeholder='option C'/>
         <input value={optionD} onInput={e=>setOptionD(e.target.value)} type="text" placeholder='option D'/>
         <select onChange={e=>setAnswer(e.target.value)}>
-          <option disabled>Select answer</option>
+          <option >Select answer</option>
           <option value="a">A</option>
           <option value="b">B</option>
           <option value="c">C</option>

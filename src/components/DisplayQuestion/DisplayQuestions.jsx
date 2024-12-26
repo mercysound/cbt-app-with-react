@@ -7,25 +7,33 @@ const DisplayQuestions = () => {
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState({});
   const {questionWithAnswers} = useQuestion("");
-  
+  const [showScore, setShowScore] = useState(false)
+
   const selectAnswer = (inputValuePick, id, correctAnswer)=>{
-
     let answerPick = correctAnswer === inputValuePick ? 1 : 0;
-
-    if(answerPick == 1 && !answers[id]){
-      setScore(prev=>prev+1)
-    }else if(answers[id] && !answerPick){
-      setScore(prev => prev -1);
-    }
-
+    // other way to run it
+    // if(answerPick === 1 && !answers[id]){
+    //   setScore(prev=>prev+1)
+    // }else if(answers[id] && !answerPick){
+    //   console.log(answers[id]);
+    //   console.log(answers);
+    //   setScore(prev => prev -1);
+    // }
+    setShowScore(false)
+    setScore(prev=>{
+      if(answerPick === 1 && !answers[id]) return prev + 1
+      else if(!answerPick && answers[id]) return prev -1
+      else return prev
+    })
     setAnswers(prev=>{
       return {...prev, [id]: answerPick}
-    } )
+    } );
   }
   
   // console.log(correct);
   
   const submitTest = ()=>{
+    setShowScore(true)
     // let scores = 0;
     // for(let ans in answers){
     //   for (let index = 0; index < questionWithAnswers.length; index++){
@@ -40,7 +48,9 @@ const DisplayQuestions = () => {
 
   return (
     <div>
-      <h3>Score is {score}</h3>
+      {/* <h3>Score is {score}</h3> */}
+      {/*using using short circuit evaluation (conditional render) javascript feature*/}
+      {showScore && <h3>Your score is {score}</h3>}
       <table border={1}>
         <thead>
           <tr>
@@ -65,7 +75,7 @@ const DisplayQuestions = () => {
           </tr>
           ))}
           <tr>
-          <td><button onClick={submitTest}>Answer</button></td>
+          <td><button onClick={submitTest}>Submit</button></td>
           </tr>
         </tbody>
       </table>
